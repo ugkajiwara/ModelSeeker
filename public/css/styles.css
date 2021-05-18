@@ -1,0 +1,86 @@
+/* カレンダー */
+  /* リンク */
+.link {
+  width: 100%;
+  text-align: center;
+  padding: 4px;
+  margin-top: 2px;
+  background: white;
+}
+
+.subM {
+  float: left;
+}
+
+.nextM {
+  float: right;
+}
+.yearMonth {
+  font-size: 23px;
+}
+
+/* カレンダー */
+.calendar {
+  background: white;
+} 
+
+
+.day {
+  height:25px;
+  /* padding-top: 2px;
+  padding-bottom: 2px; */
+}
+.passed {
+  background: #dcdcdc;
+}
+
+.today {
+  z-index: 1000;
+}
+
+.menus {
+  height: 10px;
+  width: 10px;
+  margin: 10px auto;
+}
+
+.menu {
+  height: 14px;
+  margin: 0.5px;
+}
+
+.selected {
+  background: #c8fac8;
+}
+
+.calendar-date a {
+  color: #1a1a1a;
+}
+
+/* フッター */
+
+footer i {
+  font-size: 20px;
+}
+
+.footer-bar {
+  height: 65px;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+.footer-bar p {
+  font-size: 10px;
+}
+
+
+
+
+/* reservation */
+.reservation {
+  margin-right: 1%;
+  margin-left: 1%;
+}
+
+.menuselection {
+  font-size: 10px;
+}
