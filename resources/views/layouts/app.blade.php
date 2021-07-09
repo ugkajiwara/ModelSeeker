@@ -45,11 +45,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">ログイン</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">新規登録</a>
                                 </li>
                             @endif
                         @else
@@ -59,10 +59,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/') }}">
+                                        トップページ
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        ログアウト
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -79,37 +82,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <!-- <footer class="fixed-bottom bg-white shadow footer-bar">
-            <div class="row text-center">
-                <div class="col mt-2">
-                    <a href="/calendar/index/" class="text-success">
-                        <i class="far fa-calendar-alt"></i>
-                        <p>カレンダー</p>
-                    </a>
-                </div>
-
-                <div class="col mt-2">
-                    <a href="/menu/index/" class="text-secondary">
-                        <i class="fas fa-cut"></i>
-                        <p>メニュー</p>
-                    </a>
-                </div>
-
-                <div class="col mt-2">
-                    <a href="" class="text-secondary">
-                        <i class="far fa-bell"></i>
-                        <p>通知</p>
-                    </a>
-                </div>
-
-                <div class="col mt-2">
-                    <a href="" class="text-secondary">
-                        <i class="fas fa-cog"></i>
-                        <p>設定</p>
-                    </a>
-                </div>
-            </div>
-        </footer> -->
     </div>
 </body>
 </html>

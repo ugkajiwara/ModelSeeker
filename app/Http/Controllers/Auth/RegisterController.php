@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterNotification;
+
 class RegisterController extends Controller
 {
     /*
@@ -28,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/calendar/index/';
 
     /**
      * Create a new controller instance.
@@ -50,7 +53,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'gender' => ['required',],
+            'gender' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'salon_name' => ['required', 'string', 'max:255'],
@@ -68,6 +71,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $name = $data['name'];
+        $gender = $data['gender'];
+        $email = $data['email'];
+        $salon_name =$data['salon_name'];
+        $salon_address =$data['salon_address'];
+        $salon_tel =$data['salon_tel'];
+        Mail::to($email)
+            ->send(new RegisterNotification($name,$gender,$email,$salon_name,$salon_address,$salon_tel));
+        
         return User::create([
             'name' => $data['name'],
             'gender' => $data['gender'],
@@ -76,6 +88,6 @@ class RegisterController extends Controller
             'salon_name' => $data['salon_name'],
             'salon_address' => $data['salon_address'],
             'salon_tel' => $data['salon_tel'],
-        ]);
-    }
+            ]);
+        }
 }

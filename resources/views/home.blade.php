@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <p>ログインしています！</p>
+                    <a href="/calendar/index/">マイページへ</a>
+
                 </div>
             </div>
         </div>

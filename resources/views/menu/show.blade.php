@@ -47,7 +47,7 @@
                     @csrf
                     <a href="#" class="btn btn-outline-danger btn-block btn-sm" data-id="{{ $menu->id }}" onclick="deletePost(this);">このメニューを削除する</a>
                 </form>
-                <p>（このメニューを削除しても現在このメニューを登録している予約枠は削除されません。<br>
+                <p class="text-secondary">（このメニューを削除しても現在このメニューを登録している予約枠は削除されません。<br>
                     新しい予約枠登録の際に、このメニューを選択できなくなります。）</p>
             </div>
         </div>
@@ -70,14 +70,14 @@
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/notification/index/" class="text-secondary">
                 <i class="far fa-bell"></i>
                 <p>通知</p>
             </a>
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/setting/index/" class="text-secondary">
                 <i class="fas fa-cog"></i>
                 <p>設定</p>
             </a>

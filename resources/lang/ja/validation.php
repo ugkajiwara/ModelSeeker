@@ -45,15 +45,15 @@ return [
     'image'                => ':attributeには画像ファイルを指定してください。',
     'in'                   => ':attributeには:valuesのうちいずれかの値を指定してください。',
     'in_array'             => ':attributeが:otherに含まれていません。',
-    'integer'              => ':attributeには整数を指定してください。',
+    'integer'              => ':attributeには半角数字を使用してください。',
     'ip'                   => ':attributeには正しい形式のIPアドレスを指定してください。',
     'ipv4'                 => ':attributeには正しい形式のIPv4アドレスを指定してください。',
     'ipv6'                 => ':attributeには正しい形式のIPv6アドレスを指定してください。',
     'json'                 => ':attributeには正しい形式のJSON文字列を指定してください。',
     'max'                  => [
-        'numeric' => ':attributeには:max以下の数値を指定してください。',
+        'numeric' => ':attributeは:max以下の数値を使用してください。',
         'file'    => ':attributeには:max KB以下のファイルを指定してください。',
-        'string'  => ':attributeには:max文字以下の文字列を指定してください。',
+        'string'  => ':attributeは:max文字以内で指定してください。',
         'array'   => ':attributeには:max個以下の要素を持つ配列を指定してください。',
     ],
     'mimes'                => ':attributeには:valuesのうちいずれかの形式のファイルを指定してください。',
@@ -68,7 +68,7 @@ return [
     'numeric'              => ':attributeには数値を指定してください。',
     'present'              => ':attributeには現在時刻を指定してください。',
     'regex'                => '正しい形式の:attributeを指定してください。',
-    'required'             => ':attributeは必ず入力してください。',
+    'required'             => ':attributeは必須です。',
     'required_if'          => ':otherが:valueの時:attributeは必須です。',
     'required_unless'      => ':otherが:values以外の時:attributeは必須です。',
     'required_with'        => ':valuesのうちいずれかが指定された時:attributeは必須です。',
@@ -117,9 +117,28 @@ return [
     */
 
     'attributes' => [
-        'password' => 'パスワード',
+
+        //user
         'email' => 'メールアドレス',
-        'caution' => '注意事項',
+        'password' => 'パスワード',
+        'salon_name' => 'サロン名',
+        'salon_address' => 'サロン住所',
+        'salon_tel' => 'サロン電話番号',
+
+        // calnedar
+        'time' => '開始時間',
+        'menu_id' => 'メニュー選択',
+
+        // menu
+        'menu_name' => 'メニュー名',
+        'charge' => '料金',
+        'requirements' => '条件',
+
+        // reservation
+        'name' => '名前',
+        'gender' => '性別の選択',
+        'tel' => '電話番号',
+
     ],
 
 ];

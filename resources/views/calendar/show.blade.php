@@ -66,6 +66,11 @@
                     </div>
                     <br>
                     @endforeach
+
+                    <form method="POST" action="{{route('calendar.destroy', ['id' => $calendar->id]) }}" id="delete_{{ $calendar->id }}">
+                    @csrf
+                    <a href="#" class="btn btn-outline-danger btn-block btn-sm" data-id="{{ $calendar->id }}" onclick="deletePost(this);">この予約枠を削除する</a>
+                    </form>
                 </div>
                     
                     
@@ -129,7 +134,13 @@
                         性別
                         </div>
                         <div class="col-8">
-                        {{ $reservation->gender}}
+                        @if($reservation->gender == 0)
+                        男
+                        @elseif($reservation->gender == 1)
+                        女
+                        @elseif($reservation->gender == 2)
+                        その他
+                        @endif
                         </div>
                     </div>
                     <div class="row">
@@ -148,12 +159,19 @@
                         {{ $reservation->tel }}
                         </div>
                     </div>
+                    <br>
+
+                    <form method="POST" action="{{route('calendar.destroy', ['id' => $calendar->id]) }}" id="delete_{{ $calendar->id }}">
+                    @csrf
+                    <a href="#" class="btn btn-outline-danger btn-block btn-sm" data-id="{{ $calendar->id }}" onclick="deleteReservedPost(this);">この予約枠を削除する</a>
+                    </form>
                 </div>
                 @endif
             </div>
         </div>   
     </div>
 </div>
+
 <footer class="fixed-bottom bg-white shadow footer-bar">
     <div class="row text-center">
         <div class="col mt-2">
@@ -171,19 +189,37 @@
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/notification/index/" class="text-secondary">
                 <i class="far fa-bell"></i>
                 <p>通知</p>
             </a>
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/setting/index/" class="text-secondary">
                 <i class="fas fa-cog"></i>
                 <p>設定</p>
             </a>
         </div>
     </div>
 </footer>
+
+<script>
+
+function deletePost(e) {
+    'use strict';
+    if (confirm('本当に削除しますか？')) {
+        document.getElementById('delete_' + e.dataset.id).submit();
+    }
+}
+
+function deleteReservedPost(e) {
+    'use strict';
+    if (confirm('このメニューは予約されています。本当に削除しますか？')) {
+        document.getElementById('delete_' + e.dataset.id).submit();
+    }
+}
+
+</script>
         
 @endsection

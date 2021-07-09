@@ -41,22 +41,22 @@ $today = Carbon::createFromDate();
 $todayY = $today->year;
 $todayM = $today->month;
 
-$link = '<caption><a href="/reservation/index?user_id='.$userIdFromUrl.'" class="btn btn-primary">今月</a> ';//今月のリンク
-$link .= '<a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$subY.'&&m='.$subM.'&&d=1" class="btn btn-primary"><<</a>';//前月のリンク
-$link .='<span>'.$dt->format('Y').'年</span>'; //年を表示
-$link .='<span>'.$dt->format('n').'月</span>';//月を表示
-$link .= '<a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$addY.'&&m='.$addM.'&&d=1" class="btn btn-primary">>></a></caption>';//次月リンク  
+$link = '<a href="/reservation/index?user_id='.$userIdFromUrl.'" class="btn btn-dark">今月</a>';//今月のリンク
+$link .='<div class="link border border-dark"><a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$subY.'&&m='.$subM.'&&d=1" class="btn btn-outline-dark subM"><i class="fas fa-arrow-left"></i></a>';//前月のリンク
+$link .='<span class="yearMonth">'.$dt->format('Y').'年'; //年を表示
+$link .=$dt->format('n').'月</span>';//月を表示
+$link .= '<a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$addY.'&&m='.$addM.'&&d=1" class="btn btn-outline-dark nextM"><i class="fas fa-arrow-right"></i></a></div>';//次月リンク  
 
 // カレンダー本体
-$calendar = '<tbody class="text-center"><tr>';
+$displayCalendar = '<tbody class="text-center"><tr>';
 for($i = 1; $i <= $daysInMonth; $i++){
   if($i == 1){
     if($dt->format('N') != 1 ){
-    $calendar .= '<td colspan="'.($dt->format('N')-1).'"></td>';
+    $displayCalendar .= '<td colspan="'.($dt->format('N')-1).'"></td>';
     }
   }
   if($dt->format('N') == 1){  //月曜なら
-    $calendar .= '</tr><tr>';  //改行のtr
+    $displayCalendar .= '</tr><tr>';  //改行のtr
   }
 
 
@@ -86,32 +86,50 @@ for($i = 1; $i <= $daysInMonth; $i++){
   $issetOrEmpty = (!empty($menuIds)) ? 'bg-success' : '' ;
 
   if ($comp < ($comp_now)){ //過ぎた日グレー
-    $calendar .= '<td class="calendar-date py-0 passed '.
+    $displayCalendar .= '<td class="calendar-date py-0 passed"><div class="day">'.
+    $dt->day.
+    '</div><div class="menus "></div></td>';
+
+    $dt->addDay();
+  }elseif ($comp->eq($comp_now)){ //それらが同じなら下を実行違うならelseで通常を回す
+    $displayCalendar .= '<td class="calendar-date py-0 border font-weight-bold '.
     $selected.
     '"><a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$dt->year.'&&m='.$dt->month.'&&d='.$dt->day.'" class="calendar-date><div class="day">'.
     $dt->day.
     '</div><div class="menus rounded-circle '.$issetOrEmpty.'"></div></a></td>';
-  
+
     $dt->addDay();
-  }elseif ($comp->eq($comp_now)){ //それらが同じなら下を実行違うならelseで通常を回す
-  $calendar .= '<td class="calendar-date py-0 border border-secondary '.
-  $selected.
-  '"><a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$dt->year.'&&m='.$dt->month.'&&d='.$dt->day.'" class="calendar-date><div class="day">'.
-  $dt->day.
-  '</div><div class="menus rounded-circle '.$issetOrEmpty.'"></div></a></td>';
-
-  $dt->addDay();
   }else{
-  $calendar .= '<td class="calendar-date p-0 '.
-  $selected.
-  '"><a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$dt->year.'&&m='.$dt->month.'&&d='.$dt->day.'" class="calendar-date><div class="day">'.
-  $dt->day.
-  '</div><div class="menus rounded-circle '.$issetOrEmpty.'"></div></a></td>';
+    $displayCalendar .= '<td class="calendar-date p-0 '.
+    $selected.
+    '"><a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$dt->year.'&&m='.$dt->month.'&&d='.$dt->day.'" class="calendar-date><div class="day">'.
+    $dt->day.
+    '</div><div class="menus rounded-circle '.$issetOrEmpty.'"></div></a></td>';
 
-  $dt->addDay();
+    $dt->addDay();
   }
 }
-$calendar .= '</tr></tbody>';
+$displayCalendar .= '</tr></tbody>';
+
+
+$displayMenus='';
+foreach($calendars as $calendar){
+  $menuIds = explode(",", $calendar->menu_id);
+  
+  foreach($menuIds as $menuId){
+    $menuName = DB::table('menus')->where('id','=',$menuId)->value('menu_name');
+    $menuCharge = DB::table('menus')->where('id','=',$menuId)->value('charge');
+    $menuMinutes = DB::table('menus')->where('id','=',$menuId)->value('minutes')*30;
+    $menuRequirements = DB::table('menus')->where('id','=',$menuId)->value('requirements');
+    
+    $displayMenus .='<tr><td class="px-0"><a href="/reservation/create?user_id='.$userIdFromUrl.'&&calendar_id='.$calendar->id.'&&menu_id='.$menuId.'" class="btn btn-outline-success btn-sm">選択</a></td>';
+    $displayMenus .='<td class="px-1">'.$calendar->time.'</td>';
+    $displayMenus .='<td class="px-1">'.$menuName.'</td>';
+    $displayMenus .='<td class="px-1">'.$menuCharge.'円</td>';
+    $displayMenus .='<td class="px-1">'.$menuMinutes.'分</td>';
+    $displayMenus .='<td class="px-1">'.$menuRequirements.'</td></tr>';
+  }
+}
 ?>
 
 
@@ -138,122 +156,82 @@ $calendar .= '</tr></tbody>';
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-</head>
-<body class="reservation">
 
-<!-- <div class="container"> -->
-    <div class="justify-content-center">
-        
-        reservation/index です。<br>
-                名前
-                {{ $user->name }}
-                <br>
-                サロン名
-                {{ $user->salon_name }}
-                <br>
-                サロン住所
-                {{ $user->salon_address }}
-                <br>
-                サロン電話番号
-                {{ $user->salon_tel }}
-                <br>
-                <br>
-                <div class="progress" style="height: 40px;">
-                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">日時メニュー選択</div>
-                  <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">情報入力</div>
-                  <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">予約確認</div>
-                  <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">予約完了</div>
-                </div>
-                <br>
-                
-                <p>①日付を選択してください</p>
-                <?php echo $link;?>
-                <div class="border">
-                  <table class="table m-0">
-                    <thead class="text-center">
-                      <tr>
-                        <th scope="col">月</th>
-                        <th scope="col">火</th>
-                        <th scope="col">水</th>
-                        <th scope="col">木</th>
-                        <th scope="col">金</th>
-                <th scope="col" class="text-primary">土</th>
-                <th scope="col" class="text-danger">日</th>
+        <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="reservation">
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          
+          <div class="card shadow-sm bg-white border-0 my-3" style="width: 100%;">
+            <div class="card-body py-3">
+              <h5 class="card-title">{{ $user->salon_name }}</h5>
+              <div class="card-body-detail">
+                <p class="card-text m-0">【住所】{{ $user->salon_address }}</p>
+                <p class="card-text m-0">【電話】{{ $user->salon_tel }}</p>
+                <p class="card-text">【担当】{{ $user->name }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="progress" style="height: 40px; font-size: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">日時メニュー</div>
+            <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">情報入力</div>
+            <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">予約確認</div>
+            <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">予約完了</div>
+          </div>
+          <br>
+          <p>①日付を選択してください</p>
+
+          {!! $link !!}
+          <table class="table m-0 calendar shadow">
+            <thead class="text-center">
+              <tr class="border-top-0">
+                <th scope="col" class="border-top-0">月</th>
+                <th scope="col" class="border-top-0">火</th>
+                <th scope="col" class="border-top-0">水</th>
+                <th scope="col" class="border-top-0">木</th>
+                <th scope="col" class="border-top-0">金</th>
+                <th scope="col" class="text-primary border-top-0">土</th>
+                <th scope="col" class="text-danger border-top-0">日</th>
               </tr>
             </thead>
             <tbody>
-              <?php echo $calendar;?>
+              {!! $displayCalendar !!}
             </tbody>
           </table>
-        </div>
 
           @if(!empty($d))
-          <div>
-          <br>
-          ②メニューを選択してください
-        </div>
-        <div>
-          <?php echo $y."年".$m."月".$d."日"; ?>
-        </div>
-        @endif
+            <div>
+              <br>②メニューを選択してください
+            </div>
+            <div>
+              <?php echo $y."年".$m."月".$d."日"; ?>
+            </div>
 
-        <!-- <form  method="GET" action="/reservation/create?user_id='.$userIdFromUrl.'&&y='.$y.'&&m='.$m.'&&d='.$d.'&&menu_id='.$d."> -->
-        <!-- <form  method="GET" action="{{ route('reservation.create') }}" > -->
-          <!-- <input type="hidden" name="user_id" value="{{$userIdFromUrl}}"> -->
-
-          <table class="table menuselection">
-            <thead>
-              <th></th>
-              <th>予約時間</th>
-              <th>メニュー</th>
-              <th>料金</th>
-              <th>施術時間</th>
-              <th>条件</th>
-            </thead>
-            <tbody>
-              
-              @php
-              $displayMenus='';
-              foreach($calendars as $calendar){
-                $menuIds = explode(",", $calendar->menu_id);
-                
-                foreach($menuIds as $menuId){
-                  $menuName = DB::table('menus')->where('id','=',$menuId)->value('menu_name');
-                  $menuCharge = DB::table('menus')->where('id','=',$menuId)->value('charge');
-                  $menuMinutes = DB::table('menus')->where('id','=',$menuId)->value('minutes');
-                  $menuRequirements = DB::table('menus')->where('id','=',$menuId)->value('requirements');
-                  
-                  $displayMenus .='<tr><td><a href="/reservation/create?user_id='.$userIdFromUrl.'&&calendar_id='.$calendar->id.'&&menu_id='.$menuId.'" class="btn btn-outline-primary btn-sm">選択</a></td>';
-                  $displayMenus .='<td>'.$calendar->time.'</td>';
-                  $displayMenus .='<td>'.$menuName.'</td>';
-                  $displayMenus .='<td>'.$menuCharge.'円</td>';
-                  $displayMenus .='<td>'.$menuMinutes.'分</td>';
-                  $displayMenus .='<td>'.$menuRequirements.'</td></tr>';
-                }
-              }
-              echo $displayMenus;
-              @endphp
-            </tbody>
-          </table>
-          <!-- <input type="submit" value="この内容で次へ" class="btn btn-outline-primary"> -->
-        <!-- </form> -->
+            <table class="table menuselection">
+              <thead>
+                <th class="p-0"></th>
+                <th class="p-1">予約時間</th>
+                <th class="p-1">メニュー</th>
+                <th class="p-1">料金</th>
+                <th class="p-1">施術時間</th>
+                <th class="p-1">条件</th>
+              </thead>
+              <tbody>
+                {!! $displayMenus !!}
+              </tbody>
+            </table>
+          @endif
         </div>
-        <!-- </div> -->
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

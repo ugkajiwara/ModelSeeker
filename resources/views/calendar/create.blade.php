@@ -161,6 +161,16 @@ $displayCalendar .= '</tr></tbody>';
             <br>
 
 
+            @if($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>・{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+            @endif
+
             <form method="POST" action="<?php echo '/calendar/store?y='.$y.'&&m='.$m.'&&d='.$d; ?>">
             @csrf
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
@@ -168,35 +178,36 @@ $displayCalendar .= '</tr></tbody>';
               <input type="hidden" name="month" value="<?php echo $m; ?>" readonly>
               <input type="hidden" name="day" value="<?php echo $d ?>" readonly>
               <div class="form-group">
-                ・施術開始時間を設定してください<br>
-                　<input type="time" name="time" class="form-controll" required>
+                ・施術開始時間を設定してください<span class="text-danger">※<span><br>
+                <input type="time" name="time" class="form-controll" required>
               </div>
 
-              ・募集するメニューを選択してください<br>
+              ・募集するメニューを選択してください<span class="text-danger">※<span><br>
               <table class="table menuselection">
                 <thead>
                     <tr>
-                    <th scope="col"></th>
-                    <th scope="col">メニュー</th>
-                    <th scope="col">施術時間</th>
-                    <th scope="col">料金</th>
-                    <th scope="col">条件</th>
+                    <th scope="col" class="p-1"></th>
+                    <th scope="col" class="p-1">メニュー</th>
+                    <th scope="col" class="p-1">施術時間</th>
+                    <th scope="col" class="p-1">料金</th>
+                    <th scope="col" class="p-1">条件</th>
                     </tr>
                 </thead>
                 <tbody>
                   @foreach($menus as $menu)
                     @if($menu->is_deleted == 0)
                     <tr>
-                      <td class='td_class'><input type="checkbox" name="menu_id[]" value="{{ $menu->id }}"></td>
-                      <td>{{ $menu->menu_name}}</td>
-                      <td>{{ $menu->minutes*30 }}分</td>
-                      <td>{{ $menu->charge}}円</td>
-                      <td>{{ $menu->requirements}}</td>
+                      <td class="td_class px-1"><input type="checkbox" name="menu_id[]" value="{{ $menu->id }}"></td>
+                      <td class="px-1">{{ $menu->menu_name}}</td>
+                      <td class="px-1">{{ $menu->minutes*30 }}分</td>
+                      <td class="px-1">{{ $menu->charge}}円</td>
+                      <td class="px-1">{{ $menu->requirements}}</td>
                     </tr>
                     @endif
                   @endforeach
                 </tbody>
               </table>
+              <span class="text-danger">※は必須項目<span>
               <input type="submit" value="登録する" id="submit" class="btn btn-success btn-block">
             </form>
             @endif
@@ -221,14 +232,14 @@ $displayCalendar .= '</tr></tbody>';
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/notification/index/" class="text-secondary">
                 <i class="far fa-bell"></i>
                 <p>通知</p>
             </a>
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/setting/index/" class="text-secondary">
                 <i class="fas fa-cog"></i>
                 <p>設定</p>
             </a>
@@ -236,40 +247,4 @@ $displayCalendar .= '</tr></tbody>';
     </div>
 </footer>
 
-
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js"></script>
-  <script>
-
-
-
-$(function(){
-  $('#submit').click(function(){
-    var check_count = $('.td_class :checked').length;
-    if (check_count == 0 ){
-      alert('メニューはひとつ以上選択してください')
-      return false;
-    }
-  });
-});
-
-
-</script>
-
-<!-- <script>
-window.addEventListener('DOMContentLoaded', function(){
-    $(function(){
-      $("#submit").prop("disabled", true);
-        $("input[type='checkbox']").on('change', function () {
-              // チェックされているチェックボックスの数
-              if ($(".chk:checked").length > 0) {
-                // ボタン有効
-                $("#submit").prop("disabled", false);
-              } else {
-                // ボタン無効
-                $("#submit").prop("disabled", true);
-              }
-        });
-    });
-
-</script> -->
 @endsection

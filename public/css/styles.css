@@ -20,8 +20,13 @@
 }
 
 /* カレンダー */
+li {
+  list-style: none;
+}
+
 .calendar {
   background: white;
+  font-size: 12px;
 } 
 
 
@@ -83,4 +88,19 @@ footer i {
 
 .menuselection {
   font-size: 10px;
+}
+
+.card-body-detail {
+  font-size:13px;
+}
+
+.form label, .form legend {
+  font-size: 12px;
+}
+
+@media screen and (max-width:575px) { 
+  
+  .features img {
+    width:80%;
+  }
 }

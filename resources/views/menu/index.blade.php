@@ -10,22 +10,22 @@
             <table class="table menuselection">
                 <thead>
                     <tr>
-                    <th scope="col">メニュー名</th>
-                    <th scope="col">施術時間</th>
-                    <th scope="col">料金</th>
-                    <th scope="col">条件</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="p-1">メニュー名</th>
+                    <th scope="col" class="p-1">施術時間</th>
+                    <th scope="col" class="p-1">料金</th>
+                    <th scope="col" class="p-1">条件</th>
+                    <th scope="col" class="p-1"></th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($menus as $menu)
                 @if($menu->is_deleted == 0)
                 <tr>
-                <td>{{ $menu->menu_name }}</td>
-                <td>{{ $menu->minutes*30 }}分</td>
-                <td>{{ $menu->charge }}円</td>
-                <td>{{ $menu->requirements }}</td>
-                <td><a href="{{ route('menu.show',['id' => $menu->id ])}}" class="btn btn-success btn-sm">詳細</a></td>
+                  <td class="px-1">{{ $menu->menu_name }}</td>
+                  <td class="px-1">{{ $menu->minutes*30 }}分</td>
+                  <td class="px-1">{{ $menu->charge }}円</td>
+                  <td class="px-1">{{ $menu->requirements }}</td>
+                  <td class="px-1"><a href="{{ route('menu.show',['id' => $menu->id ])}}" class="btn btn-success btn-sm">詳細</a></td>
                 </tr>
                 @endif
                 @endforeach
@@ -54,14 +54,14 @@
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/notification/index/" class="text-secondary">
                 <i class="far fa-bell"></i>
                 <p>通知</p>
             </a>
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/setting/index/" class="text-secondary">
                 <i class="fas fa-cog"></i>
                 <p>設定</p>
             </a>

@@ -6,6 +6,11 @@ use App\Models\Calendar;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreReservation;
+
+use Illuminate\Support\Facades\Mail; 
+use App\Mail\ReservationNotification; 
+use App\Mail\ReservationConfirmation; 
 
 class ReservationController extends Controller
 {
@@ -76,7 +81,7 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function confirm(Request $request)
+    public function confirm(StoreReservation $request)
     {
         //
         $user_id = $request->user_id;
@@ -126,23 +131,28 @@ class ReservationController extends Controller
         $calendar_id = $reservation->calendar_id;
         
         $user = DB::table('users')
-        ->find($user_id,['id','name','salon_name','salon_address','salon_tel']);
+        ->find($user_id,['id','name','email','salon_name','salon_address','salon_tel']);
         
         $menu = DB::table('menus')
         ->find($menu_id,['id','menu_name','minutes','charge','requirements']);
         
         $selectedCalendar = DB::table('calendars')
         ->find($calendar_id,['id','user_id','menu_id','year','month','day','time','is_reserved']);
+
         if($selectedCalendar->is_reserved == 0 ){
              $reservation->save();
 
              $calendar = Calendar::find($calendar_id);
              $calendar->is_reserved = 1;
              $calendar->save();
+
+             Mail::to($user->email)->send(new ReservationNotification($reservation,$calendar,$menu));
+             Mail::to($reservation->email)->send(new ReservationConfirmation($user,$reservation,$calendar,$menu));
         }else{
              echo "エラーが発生しました。画面を閉じてやり直してください。";
              exit;
         }
+
 
         return view('reservation/thanks', compact('reservation', 'user', 'menu', 'selectedCalendar'));
     }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use  App\Models\Calendar;
 use  App\Models\Menu;
 use  App\Models\Reservation;
+use  App\Http\Requests\StoreCalendar;
 
 class CalendarController extends Controller
 {
@@ -62,7 +63,7 @@ class CalendarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCalendar $request)
     {
         //
         $calendar = new Calendar;
@@ -154,5 +155,14 @@ class CalendarController extends Controller
     public function destroy($id)
     {
         //
+        $calendar = Calendar::find($id);
+        $calendar->delete();
+
+        DB::table('reservations')
+        ->where('calendar_id','=',$id)
+        ->delete();
+
+        return redirect('calendar/index');
+        
     }
 }

@@ -129,25 +129,25 @@ $displayCalendar .= '</tr></tbody>';
 //したのメニュー
 $displayMenus='<table class="table menuselection">
 <thead>
-  <td>時間</td>
-  <td>メニュー</td>
-  <td>状態</td>
-  <td>予約者</td>
-  <td></td>
+  <th class="p-1">時間</th>
+  <th class="p-1">メニュー</th>
+  <th class="p-1">状態</th>
+  <th class="p-1">予約者</th>
+  <th class="p-1"></th>
 </thead>
 <tbody>';
 foreach($calendars as $calendar){
 $menuIds = explode(",", $calendar->menu_id);
 
-$displayMenus .='<tr><td>'.$calendar->time.'</td>';
+$displayMenus .='<tr><td class="px-1">'.$calendar->time.'</td>';
 if( $calendar->is_reserved == 0 ){
-$displayMenus .='<td>';
+$displayMenus .='<td class="px-1">';
 foreach($menuIds as $menuId){
 $menuName = DB::table('menus')->where('id','=',$menuId)->value('menu_name');
-$displayMenus .='<li>'.$menuName.'</li>';
+$displayMenus .='<li>・'.$menuName.'</li>';
 }
-$displayMenus .= '</td><td class="text-success">受付中</td><td></td>
-      <td><a href="/calendar/show/'.$calendar->id.'"class="btn btn-success btn-sm">詳細</a></td>';
+$displayMenus .= '</td><td class="px-1 text-success">受付中</td><td></td>
+      <td class="px-1"><a href="/calendar/show/'.$calendar->id.'"class="btn btn-success btn-sm">詳細</a></td>';
 }
 if( $calendar->is_reserved == 1 ){
 $menuId = DB::table('reservations')
@@ -162,10 +162,10 @@ $reserver = DB::table('reservations')
 ->where('calendar_id','=',$calendar->id)
 ->value('name');
 
-$displayMenus .= '<td>'.$menuName.'</td>';
-$displayMenus .= '<td class="text-secondary">予約確定</td>';
-$displayMenus .= '<td>'.$reserver.'</td>
-      <td><a href="/calendar/show/'.$calendar->id.'" class="btn btn-success btn-sm">詳細</a></td>';
+$displayMenus .= '<td class="px-1">'.$menuName.'</td>';
+$displayMenus .= '<td class="px-1 text-secondary">予約確定</td>';
+$displayMenus .= '<td class="px-1">'.$reserver.'</td>
+      <td class="px-1"><a href="/calendar/show/'.$calendar->id.'" class="btn btn-success btn-sm">詳細</a></td>';
 }
 
 $displayMenus .='</tr>';
@@ -185,7 +185,7 @@ $displayMenus .='</tbody></table>';
         <?php echo $link;?>
           <table class="table m-0 calendar shadow">
             <thead class="text-center">
-              <tr class="border-top-0">
+              <tr>
                 <th scope="col" class="border-top-0">月</th>
                 <th scope="col" class="border-top-0">火</th>
                 <th scope="col" class="border-top-0">水</th>
@@ -229,14 +229,14 @@ $displayMenus .='</tbody></table>';
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/notification/index/" class="text-secondary">
                 <i class="far fa-bell"></i>
                 <p>通知</p>
             </a>
         </div>
 
         <div class="col mt-2">
-            <a href="" class="text-secondary">
+            <a href="/setting/index/" class="text-secondary">
                 <i class="fas fa-cog"></i>
                 <p>設定</p>
             </a>
