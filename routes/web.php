@@ -57,6 +57,8 @@ Route::group(['prefix' => 'setting', 'middleware' => 'auth'],function(){
 Route::get('/setting/how_to_use', 'SettingController@how_to_use')->name('setting.how_to_use');
 Route::get('/setting/faq', 'SettingController@faq')->name('setting.faq');
 Route::get('/setting/contact', 'SettingController@contact')->name('setting.contact');
+Route::get('/setting/terms', 'SettingController@terms')->name('setting.terms');
+Route::get('/setting/privacy_policy', 'SettingController@privacy_policy')->name('setting.privacy_policy');
 
 
 //mail送信に関して

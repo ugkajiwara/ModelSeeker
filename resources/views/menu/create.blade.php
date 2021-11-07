@@ -18,7 +18,7 @@
                 </div>
                 @endif
     
-                <form method="POST" action="{{ route('menu.store') }}">
+                <form method="POST" action="{{ route('menu.store') }}" onsubmit="return checkDouble();">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
     
@@ -56,12 +56,12 @@
                     </div>
     
                     <div class="form-group">
-                        <label for="requirements">条件</label>
+                        <label for="requirements">条件（条件指定が特に無い場合は何も記入しないでください）</label>
                         <textarea name="requirements" class="form-control" id="requirements" rows="3">{{ old('requirements') }}</textarea>
                     </div>
     
                     <span class="text-danger">※は必須項目<span>
-                    <input type="submit" value="登録" class="btn btn-success btn-block">
+                    <input type="submit" value="登録" class="btn btn-success btn-block" id="btnSubmit">
                     <br>
                 </form>
             </div>

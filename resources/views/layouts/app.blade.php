@@ -83,5 +83,18 @@
             @yield('content')
         </main>
     </div>
+
+<script>
+function checkDouble(){
+  var obj = document.getElementById("btnSubmit");
+  if(obj.disabled){
+    return false;
+  }else{
+    obj.disabled = true;
+    return true;
+  }
+}
+</script>
+
 </body>
 </html>

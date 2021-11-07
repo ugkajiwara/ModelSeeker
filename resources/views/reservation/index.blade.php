@@ -83,7 +83,7 @@ for($i = 1; $i <= $daysInMonth; $i++){
           ->where('user_id','=',$userIdFromUrl)
           ->where('is_reserved','=',0)
           ->value('menu_id');
-  $issetOrEmpty = (!empty($menuIds)) ? 'bg-success' : '' ;
+  $issetOrEmpty = (!empty($menuIds)) ? 'bg-success ">' : ' text-secondary">×' ;
 
   if ($comp < ($comp_now)){ //過ぎた日グレー
     $displayCalendar .= '<td class="calendar-date py-0 passed"><div class="day">'.
@@ -96,7 +96,7 @@ for($i = 1; $i <= $daysInMonth; $i++){
     $selected.
     '"><a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$dt->year.'&&m='.$dt->month.'&&d='.$dt->day.'" class="calendar-date><div class="day">'.
     $dt->day.
-    '</div><div class="menus rounded-circle '.$issetOrEmpty.'"></div></a></td>';
+    '</div><div class="menus rounded-circle '.$issetOrEmpty.'</div></a></td>';
 
     $dt->addDay();
   }else{
@@ -104,7 +104,7 @@ for($i = 1; $i <= $daysInMonth; $i++){
     $selected.
     '"><a href="/reservation/index?user_id='.$userIdFromUrl.'&&y='.$dt->year.'&&m='.$dt->month.'&&d='.$dt->day.'" class="calendar-date><div class="day">'.
     $dt->day.
-    '</div><div class="menus rounded-circle '.$issetOrEmpty.'"></div></a></td>';
+    '</div><div class="menus rounded-circle '.$issetOrEmpty.'</div></a></td>';
 
     $dt->addDay();
   }
@@ -157,15 +157,30 @@ foreach($calendars as $calendar){
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
-        <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+
 </head>
+
 <body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-white">
+      <div class="container">
+
+        <div class="navbar-brand">
+          {{ config('app.name', 'Laravel') }}
+        </div>
+      
+        <a href="https://model-seeker.com" class="text-success linkToHP">美容師の方はこちら</a>
+      </div>
+    </nav>
+  </header>
 
   <div class="reservation">
 
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 mb-5">
           
           <div class="card shadow-sm bg-white border-0 my-3" style="width: 100%;">
             <div class="card-body py-3">
@@ -205,33 +220,42 @@ foreach($calendars as $calendar){
             </tbody>
           </table>
 
-          @if(!empty($d))
-            <div>
-              <br>②メニューを選択してください
-            </div>
-            <div>
-              <?php echo $y."年".$m."月".$d."日"; ?>
-            </div>
+          @if(!empty($d) && $comp_now <= $day)
+            <div class="mb-5">
+              <div>
+                <br>②メニューを選択してください
+              </div>
+              <div>
+                <?php echo $y."年".$m."月".$d."日"; ?>
+              </div>
 
-            <table class="table menuselection">
-              <thead>
-                <th class="p-0"></th>
-                <th class="p-1">予約時間</th>
-                <th class="p-1">メニュー</th>
-                <th class="p-1">料金</th>
-                <th class="p-1">施術時間</th>
-                <th class="p-1">条件</th>
-              </thead>
-              <tbody>
-                {!! $displayMenus !!}
-              </tbody>
-            </table>
+              <table class="table menuselection mb-5">
+                <thead>
+                  <th class="p-0"></th>
+                  <th class="p-1">予約時間</th>
+                  <th class="p-1">メニュー</th>
+                  <th class="p-1">料金</th>
+                  <th class="p-1">施術時間</th>
+                  <th class="p-1">条件</th>
+                </thead>
+                <tbody>
+                  {!! $displayMenus !!}
+                </tbody>
+              </table>
+            </div>
           @endif
         </div>
       </div>
     </div>
   </div>
 
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <footer>
+    <div class="text-center">
+    <a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約</a>
+    <a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+    <p>created by Yuji Kajiwara<a href="https://www.instagram.com/ug_ka/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram text-dark"></i></a></p>
+    </div>
+  </footer>
+
 </body>
 </html>

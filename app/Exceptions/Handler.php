@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Google\Cloud\ErrorReporting\Bootstrap;
+
+use Illuminate\Session\TokenMismatchException;	
 
 class Handler extends ExceptionHandler
 {
@@ -34,7 +37,12 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        parent::report($exception);
+        if (isset($_SERVER['GAE_SERVICE'])) {
+            Bootstrap::init();
+            Bootstrap::exceptionHandler($exception);
+        } else {
+            parent::report($exception);
+        }
     }
 
     /**
@@ -46,6 +54,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof TokenMismatchException) {
+            return redirect('/login');
+        }	
+
         return parent::render($request, $exception);
     }
+
 }

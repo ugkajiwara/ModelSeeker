@@ -31,8 +31,8 @@ __________________________________<br>
 ご登録情報は、設定画面から確認・変更が可能です。<br>
 <br>
 ModelSeekerホームページ▼▼▼<br>
-<br>
+https://model-seeker.com/<br>
 <br>
 使い方を見る▼▼▼<br>
-<br>
+https://model-seeker.com/setting/how_to_use/<br>
 <br>

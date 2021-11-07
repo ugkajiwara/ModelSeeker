@@ -11,7 +11,7 @@
 
 
             <div class="card-body">
-                <form method="POST" action="{{ route('setting.update') }}">
+                <form method="POST" action="{{ route('setting.update') }}" onsubmit="return checkDouble();">
                     @csrf
 
                     <!-- 名前 -->
@@ -111,7 +111,7 @@
                         <div class="form-group row mb-5">
                             <div class="col-md-6 offset-md-4">
 
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="btnSubmit">
                                     変更する
                                 </button>
 

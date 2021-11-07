@@ -171,7 +171,7 @@ $displayCalendar .= '</tr></tbody>';
             </div>
             @endif
 
-            <form method="POST" action="<?php echo '/calendar/store?y='.$y.'&&m='.$m.'&&d='.$d; ?>">
+            <form method="POST" action="<?php echo '/calendar/store?y='.$y.'&&m='.$m.'&&d='.$d; ?>" onsubmit="return checkDouble();">
             @csrf
               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
               <input type="hidden" name="year" value="<?php echo $y; ?>" readonly>
@@ -208,7 +208,7 @@ $displayCalendar .= '</tr></tbody>';
                 </tbody>
               </table>
               <span class="text-danger">※は必須項目<span>
-              <input type="submit" value="登録する" id="submit" class="btn btn-success btn-block">
+              <input type="submit" value="登録する" id="btnSubmit" class="btn btn-success btn-block">
             </form>
             @endif
 

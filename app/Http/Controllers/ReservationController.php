@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Calendar;
-use App\Models\Reservation;
+use App\Models\calendar;
+use App\Models\reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreReservation;

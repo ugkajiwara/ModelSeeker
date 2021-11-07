@@ -19,8 +19,23 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+
 </head>
 <body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-white">
+      <div class="container">
+        
+        <div class="navbar-brand">
+          {{ config('app.name', 'Laravel') }}
+        </div>
+
+      </div>
+    </nav>
+  </header>
 
   <div class="reservation">
 
@@ -77,7 +92,7 @@
             </div>
             @endif
 
-            <form method="POST" action="{{ route('reservation.confirm') }}">
+            <form method="POST" action="{{ route('reservation.confirm') }}" onsubmit="return checkDouble();">
               @csrf
               <div class="form-group row">
                 <label for="name" class="col-3 col-form-label">名前<span class="text-danger">※<span></label>
@@ -136,18 +151,33 @@
               @endif
 
               <span class="text-danger">※は必須項目<span>
-              <input type="submit" value="確認する" class="btn btn-block btn-outline-success">
+              <input type="submit" value="確認する" class="btn btn-block btn-success" id="btnSubmit">
             </form>
             
           </div>
-
         </div>
       </div>
     </div>
-
   </div>
 
+  <footer>
+    <div class="text-center">
+    <a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約</a>
+    <a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+    <p>created by Yuji Kajiwara<a href="https://www.instagram.com/ug_ka/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram text-dark"></i></a></p>
+    </div>
+  </footer>
 
-          
+<script>
+function checkDouble(){
+  var obj = document.getElementById("btnSubmit");
+  if(obj.disabled){
+    return false;
+  }else{
+    obj.disabled = true;
+    return true;
+  }
+}
+</script>
 
 </body>

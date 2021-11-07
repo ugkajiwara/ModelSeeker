@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use  App\Models\Calendar;
-use  App\Models\Menu;
-use  App\Models\Reservation;
+use  App\Models\calendar;
+use  App\Models\menu;
+use  App\Models\reservation;
 use  App\Http\Requests\StoreCalendar;
 
 class CalendarController extends Controller

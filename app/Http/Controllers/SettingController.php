@@ -38,6 +38,16 @@ class SettingController extends Controller
         return view('setting.contact');
     }
 
+    public function terms()
+    {
+        return view('setting.terms');
+    }
+
+    public function privacy_policy()
+    {
+        return view('setting.privacy_policy');
+    }
+
     public function edit() 
     {
         $loginUserId = Auth::user()->id;

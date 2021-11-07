@@ -1,3 +1,16 @@
+/* welcomeblade */
+
+.header {
+  width: 100%;
+  height: 40px;
+
+  position: fixed;
+  top:0;
+  text-align: right;
+
+  z-index: 99;
+}
+
 /* カレンダー */
   /* リンク */
 .link {
@@ -97,6 +110,17 @@ footer i {
 .form label, .form legend {
   font-size: 12px;
 }
+
+
+/* 利用規約・プライバシーポリシー */
+.terms li, .privacypolicy li {
+  list-style: decimal;
+}
+.terms p, .terms li, .privacypolicy p, .privacypolicy li {
+  font-size: 12px;
+}
+
+
 
 @media screen and (max-width:575px) { 
   

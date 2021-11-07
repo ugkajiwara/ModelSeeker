@@ -38,7 +38,7 @@
                 （コピーしてお使いください）
                 </p>
                 <div class="input-group mb-2 mr-sm-2">
-                    <input type="text"  id="copyTarget" class="form-control rounded" value="http://127.0.0.1:8000/reservation/index?user_id={{$user->id}}" readonly>
+                    <input type="text"  id="copyTarget" class="form-control rounded" value="https://model-seeker.com/reservation/index?user_id={{$user->id}}" readonly>
                     <button onclick="copyToClipboard()" class="btn btn-primary rounded-right"><i class="fas fa-clipboard"></i></button>
                 </div>
             </div>
@@ -52,15 +52,14 @@
   <li class="list-group-item"><a href="/setting/how_to_use/" target="_blank" rel="noopener noreferrer">使い方を見る　<i class="fas fa-external-link-alt"></i></a></li>
   <li class="list-group-item"><a href="/setting/faq/" target="_blank" rel="noopener noreferrer">よくある質問　<i class="fas fa-external-link-alt"></i></a></li>
   <li class="list-group-item"><a href="/setting/contact/" target="_blank" rel="noopener noreferrer">問い合わせる　<i class="fas fa-external-link-alt"></i></a></li>
+  <li class="list-group-item"><a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約　<i class="fas fa-external-link-alt"></i></a></li>
+  <li class="list-group-item"><a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー　<i class="fas fa-external-link-alt"></i></a></li>
   <li class="list-group-item">
     <a href="{{ route('logout') }}"
         onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">
         ログアウト
     </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
   </li>
 </ul>
 

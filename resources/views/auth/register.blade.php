@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">必要事項を記入してください</div>
+                <div class="card-header">新規登録/必要事項を記入してください</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" onSubmit="return checkDouble();">
                         @csrf
 
                         <!-- 名前 -->
@@ -124,11 +124,20 @@
                             </div>
                         </div>
 
+                        <!-- 利用規約＆プライバシーポリシー同意 -->
+                        <div class="my-3">
+                            <input type="checkbox" required>
+                            <a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約</a> と
+                            <a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プラーバシーポリシー</a>
+                            に同意します。
+                            </input>
+                        </div>
+
 
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-block" id="btnSubmit">
                                     登録
                                 </button>
                             </div>
@@ -139,4 +148,12 @@
         </div>
     </div>
 </div>
+
+<script>
+  var set=0;
+  function double() {
+  if(set==0){ set=1; } else {
+  alert("只今処理中です。\nそのままお待ちください。");
+  return false; }}
+  </script>
 @endsection

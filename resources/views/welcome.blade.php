@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>ModelSeeker</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -32,14 +32,14 @@
                 justify-content: center;
             }
 
-            .position-ref {
-                position: relative;
-            }
-
             .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
+                /* position: fixed; */
+                right: 5px;
+                margin-top: 15px;
+                z-index: 100;
+            }
+            .top-right a {
+                opacity: 1.0;
             }
 
             .content {
@@ -66,7 +66,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref">
+        <div class="header">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,8 +89,9 @@
                 </div>
                 <div class="col-7 d-flex align-items-center justify-content-center">
                     <div class="text-center align-items-center my-5">
-                        <h5>SNSを頑張っているアシスタントの皆さんへ</h5>
-                        <p>SNS集客に特化した美容師アシスタント向け予約管理システム</p>
+                        <h5>SNS集客に特化した美容師アシスタント向け予約管理システム</h5>
+                        <p>インスタグラムのプロフィールにリンクを貼るだけで、
+                        あなたのプロフィールが予約サイトに変わります。</p>
                     </div>
                 </div>
             </div>
@@ -102,21 +103,21 @@
             <div class="container">
                 <div class="features text-center justify-content-center">
     
-                    <h3 class="py-3">特徴</h3>
+                    <h3 class="py-3">どんなサービスなのか？</h3>
 
                     <div class="row">
                         <div class="col-sm-4">
                             <img src="{{ asset('img/feature1.png') }}" class="img-fluid px-5 px-sm-0 rounded-circle mb-3" alt="">
                             <h4>完全無料</h4>
-                            <p class="text-left">いまなら完全無料で使えます。<br>元美容師が、あったらよかったなという思いで作ってみました。</p>
+                            <p class="text-left">いまなら完全無料で使えます。<br>
+                            元美容師が、こんなのあったら良かったなという思いで作ってみました。</p>
                         </div>
     
                         <div class="col-sm-4">
                             <img src="{{ asset('img/feature2.png') }}" class="img-fluid px-5 px-sm-0  rounded-circle mb-3" alt="">
                             <h4>使いやすさ</h4>
-                            <p class="text-left">これがあったらいいな、あれがあったらいいな。
-                                アシスタントの時にモデルさん探しが大変だったから、何が必要だったかわかります。<br>
-                                無駄な機能を省き、モデルさん募集に対する条件など提示できるようにしました。
+                            <p class="text-left">アシスタントの時にモデルさん探しが大変だったから、何が必要なのかわかります。<br>
+                                無駄な機能を省き、モデルさん募集に対する条件など提示できるようにしました。<br>
                             </p>
                         </div>
     
@@ -137,7 +138,7 @@
 
         <div class="container mb-5 mt-3">
             <h3 class="py-3 text-center">このサービスができるまで</h3>
-            <p class="mt-3 mb-5">昨今、インスタグラムなどのSNSの台頭により、SNSでの個人ブランディングが美容師として売れていく上で、
+            <p class="mt-3 mb-5">昨今、インスタグラムなどSNSの台頭により、SNSでの個人ブランディングが美容師として売れていく上で、
                 非常に重要な要素となってきました。<br>
                 私自身、多くはアシスタントですが、さまざまな美容師の方達と関わってきました。
                 そんな中で、アシスタントの集客の仕組みがまだまだアナログだなと思ったのです。<br>
@@ -160,19 +161,3 @@
         </footer>
     </body>
 </html>
-
-    
-
-
-
-
-
-
-    <!-- <a href="https://laravel.com/docs">Docs</a>
-    <a href="https://laracasts.com">Laracasts</a>
-    <a href="https://laravel-news.com">News</a>
-    <a href="https://blog.laravel.com">Blog</a>
-    <a href="https://nova.laravel.com">Nova</a>
-    <a href="https://forge.laravel.com">Forge</a>
-    <a href="https://vapor.laravel.com">Vapor</a>
-    <a href="https://github.com/laravel/laravel">GitHub</a> -->

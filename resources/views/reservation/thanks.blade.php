@@ -19,13 +19,35 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+
 </head>
 <body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-white">
+      <div class="container">
+        
+        <div class="navbar-brand">
+          {{ config('app.name', 'Laravel') }}
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
   <div class="reservation">
 
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
+
+          <div class="text-success mt-3">
+            <h5>予約を受け付けました。</h5>
+            <h5>確認メールを送信しました。</h5>
+            <h5>※この画面をスクリーンショットなどで保存されることをお勧めします※</h5>
+          </div>
           
           <div class="card shadow-sm bg-white border-0 my-3" style="width: 100%;">
             <div class="card-body py-3">
@@ -65,7 +87,7 @@
 
           <div class="card shadow-sm bg-white border-0 my-3" style="width: 100%;">
             <div class="card-body py-3">
-              <h5 class="card-title">入力情報確認</h5>
+              <h5 class="card-title">お客様情報</h5>
               <div class="card-body-detail">
                 <p class="card-text m-0">【名前】{{ $reservation->name }}</p>
                 <p class="card-text m-0">【性別】
@@ -82,13 +104,18 @@
               </div>
             </div>
           </div>
-
-          <h5>予約を受け付けました。</h5>
-          <h5>※この画面をスクリーンショットなどで保存されることをお勧めします※</h5>
         </div>
       </div>
     </div>
-
   </div>
+
+
+  <footer>
+    <div class="text-center">
+    <a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約</a>
+    <a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+    <p>created by Yuji Kajiwara<a href="https://www.instagram.com/ug_ka/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram text-dark"></i></a></p>
+    </div>
+  </footer>
 
 </body>

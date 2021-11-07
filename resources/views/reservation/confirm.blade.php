@@ -19,8 +19,24 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+
 </head>
 <body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-white">
+      <div class="container">
+        
+        <div class="navbar-brand">
+          {{ config('app.name', 'Laravel') }}
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
   <div class="reservation">
 
     <div class="container">
@@ -82,7 +98,7 @@
               </div>
             </div>
           </div>
-          <form method="POST" action="{{ route('reservation.store') }}" class="mb-5">
+          <form method="POST" action="{{ route('reservation.store') }}" class="mb-5" onsubmit="return checkDouble();">
             @csrf
             <input type="hidden" name="user_id" value="{{ $user->id }}">
             <input type="hidden" name="menu_id" value="{{ $menu->id }}">
@@ -91,11 +107,31 @@
             <input type="hidden" name="gender" value="{{ $inputs['gender'] }}">
             <input type="hidden" name="email" value="{{ $inputs['email'] }}">
             <input type="hidden" name="tel" value="{{ $inputs['tel'] }}">
-            <input type="submit" value="予約を確定する" class="btn btn-block btn-outline-success">
+            <input type="submit" value="予約を確定する" class="btn btn-block btn-success" id="btnSubmit">
           </form>
         </div>
       </div>
     </div>
-
   </div>
+
+  <footer>
+    <div class="text-center">
+    <a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約</a>
+    <a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+    <p>created by Yuji Kajiwara<a href="https://www.instagram.com/ug_ka/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram text-dark"></i></a></p>
+    </div>
+  </footer>
+
+<script>
+function checkDouble(){
+  var obj = document.getElementById("btnSubmit");
+  if(obj.disabled){
+    return false;
+  }else{
+    obj.disabled = true;
+    return true;
+  }
+}
+</script>
+
 </body>
