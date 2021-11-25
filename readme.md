@@ -1,3 +1,31 @@
+<h1>Model Seeker</h1>
+<p>This is the service of attracting customers for hairdresser assistants.</p>
+
+<h2>Technology stack</h2>
+<ul>
+    <li>PHP 7.3</li>
+    <li>Laravel 6.20</li>
+    <li>MySQL 5.7</li>
+    <li>Bootstrap 4.6</li>
+    <li>Google Cloud</li>
+    <ul>
+        <li>App Engine</li>
+        <li>Cloud SQL</li>
+    </ul>
+    <li>MAMP</li>
+</ul>
+<h2>Design documents</h2>
+<img width="794" alt="概要" src="https://user-images.githubusercontent.com/61844847/143389614-125e4496-d725-4152-ba64-9988e8bc82ef.png">
+<img width="615" alt="図" src="https://user-images.githubusercontent.com/61844847/143389780-6606dd3a-20f8-4421-8f1c-6ee19ec026c9.png">
+<img width="915" alt="DB" src="https://user-images.githubusercontent.com/61844847/143390389-0bcb8540-19da-4329-9e11-aef016b924a6.png">
+
+
+
+
+
+
+
+
 <!-- <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
