@@ -1,5 +1,7 @@
 <h1>Model Seeker</h1>
 <p>This is the service of attracting customers for hairdresser assistants.</p>
+<p>This application is made to study Laravel, GCP and others.</p>
+<a href="https://model-seeker.com" target="_blank">ModelSeeker</a>
 
 <h2>Technology stack</h2>
 <ul>
@@ -19,8 +21,18 @@
 <img width="615" alt="図" src="https://user-images.githubusercontent.com/61844847/143389780-6606dd3a-20f8-4421-8f1c-6ee19ec026c9.png">
 <img width="915" alt="DB" src="https://user-images.githubusercontent.com/61844847/143390389-0bcb8540-19da-4329-9e11-aef016b924a6.png">
 
+<h2>what I was particular about</h2>
+
+<ul>
+    <li>I supposed that hairdressers will use this app through their works, so I cared about intuitive design and utility.</li>
+</ul>
 
 
+<h2>what I was struggling with</h2>
+
+<ul>
+    <li>GCP settings especially for Cloud SQL</li>
+</ul>
 
 
 
