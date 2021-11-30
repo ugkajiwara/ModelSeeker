@@ -31,7 +31,7 @@
 <h2>what I was struggling with</h2>
 
 <ul>
-    <li>GCP settings especially for Cloud SQL　<a href="https://qiita.com/ugkajiwara/items/64b5ac94d81ca13d1b5f" target="_blank">[detail]</a></li>
+    <li>GCP settings especially for Cloud SQL　[<a href="https://qiita.com/ugkajiwara/items/64b5ac94d81ca13d1b5f" target="_blank">detail</a>]</li>
 </ul>
 
 
