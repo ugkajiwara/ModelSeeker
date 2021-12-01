@@ -1,7 +1,9 @@
 <h1>Model Seeker</h1>
 <p>This is the service of attracting customers for hairdresser assistants.</p>
 <p>This application is made to study Laravel, GCP and others.</p>
-<a href="https://model-seeker.com" target="_blank">ModelSeeker</a>
+<a href="https://model-seeker.com" target="_blank">ModelSeeker</a><br>
+<a href="https://www.icloud.com/keynote/0SwxYMOJQSxOcgc_-b3uaqEbA" target="_blank">why I made this</a>
+
 
 <h2>Technology stack</h2>
 <ul>
