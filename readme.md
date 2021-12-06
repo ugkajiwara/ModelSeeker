@@ -3,6 +3,7 @@
 <p>This application is made to study Laravel, GCP and others.</p>
 <a href="https://model-seeker.com" target="_blank">ModelSeeker</a><br>
 <a href="https://www.icloud.com/keynote/0SwxYMOJQSxOcgc_-b3uaqEbA" target="_blank">why I made this</a>
+I used this slide to givr a presentation to hairdressers.
 
 
 <h2>Technology stack</h2>
