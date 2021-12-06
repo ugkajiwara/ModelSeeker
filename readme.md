@@ -1,6 +1,6 @@
 <h1>Model Seeker</h1>
 <p>美容師アシスタント向け予約管理ツール。ターゲットとしては、SNSを利用して新規顧客や施術モデルを探している美容師アシスタントの方。
-集客から予約獲得までを一貫して自身のページ内で行うためのSNSブランディングをして運用している方。</p>
+集客から予約獲得までを一貫して自身のページ内で行うためのSNSブランディングをして運用している方。あくまで「自分で集客をする」ということに重きを置いているため、サービス内での集客機能は実装しませんでした。</p>
 <p>LaravelやGCPなどの学習の意味も込めて作成しました。</p>
 <a href="https://model-seeker.com" target="_blank">ModelSeeker</a><br>
 [<a href="https://www.icloud.com/keynote/0SwxYMOJQSxOcgc_-b3uaqEbA" target="_blank">keynote</a>]
