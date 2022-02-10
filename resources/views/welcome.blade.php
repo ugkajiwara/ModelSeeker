@@ -35,15 +35,17 @@
         </div>
 
         <div class="firstview pl-0">
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{ asset('img/img2.jpg') }}" class="img-fluid" alt="">
-                </div>
-                <div class="col-7 d-flex align-items-center justify-content-center">
-                    <div class="fv-text text-center align-items-center my-5">
-                        <h5>SNS集客に特化した美容師アシスタント向け予約管理システム</h5>
-                        <p>インスタグラムのプロフィールにリンクを貼るだけで、
-                        あなたのプロフィールが予約サイトに変わります。</p>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-5">
+                        <img src="{{ asset('img/img2.jpg') }}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-7 d-flex align-items-center justify-content-center pr-0">
+                        <div class="fv-text text-center align-items-center my-5">
+                            <h5>SNS集客に特化した美容師アシスタント向け予約管理システム</h5>
+                            <p>インスタグラムのプロフィールにリンクを貼るだけで、
+                            あなたのプロフィールが予約サイトに変わります。</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,6 @@ html, body {
   font-weight: 200;
   height: 100vh;
   margin: 0;
-  overflow-x: hidden;
 }
 
 .header {
@@ -83,10 +82,7 @@ i {
   padding-bottom: 60px;
 }
 .features-wrapper {
-  /* background-color: #c8fac8;  */
-  /* color:white; */
 }
 .why_i_made_this {
   background-color: #f8f9fa;
-  /* color:white; */
 }
