@@ -1,16 +1,3 @@
-/* welcomeblade */
-
-.header {
-  width: 100%;
-  height: 40px;
-
-  position: fixed;
-  top:0;
-  text-align: right;
-
-  z-index: 99;
-}
-
 /* カレンダー */
   /* リンク */
 .link {
@@ -77,7 +64,7 @@ li {
 
 /* フッター */
 
-footer i {
+.footer-bar i {
   font-size: 20px;
 }
 
@@ -120,11 +107,8 @@ footer i {
   font-size: 12px;
 }
 
-
-
-@media screen and (max-width:575px) { 
-  
-  .features img {
-    width:80%;
-  }
+/* how_to_use */
+.how_to_use img {
+  width: 100%;
+  max-width: 250px;
 }

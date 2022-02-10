@@ -125,7 +125,7 @@
                         </div>
 
                         <!-- 利用規約＆プライバシーポリシー同意 -->
-                        <div class="my-3">
+                        <div class="my-3 text-center">
                             <input type="checkbox" required>
                             <a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約</a> と
                             <a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プラーバシーポリシー</a>

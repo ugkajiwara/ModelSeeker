@@ -94,6 +94,16 @@ function checkDouble(){
     return true;
   }
 }
+
+function copyToClipboard() {
+        var copyTarget = document.getElementById("copyTarget");
+
+        copyTarget.select();
+
+        document.execCommand("Copy");
+
+        alert("リンクをコピーしました : " + copyTarget.value);
+        }
 </script>
 
 </body>

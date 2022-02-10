@@ -47,21 +47,23 @@
     </div>
 </div>
 
-<ul class="list-group list-group-flush border-top border-bottom mb-5">
-  <li class="list-group-item bg-light">ヘルプ</li>
-  <li class="list-group-item"><a href="/setting/how_to_use/" target="_blank" rel="noopener noreferrer">使い方を見る　<i class="fas fa-external-link-alt"></i></a></li>
-  <li class="list-group-item"><a href="/setting/faq/" target="_blank" rel="noopener noreferrer">よくある質問　<i class="fas fa-external-link-alt"></i></a></li>
-  <li class="list-group-item"><a href="/setting/contact/" target="_blank" rel="noopener noreferrer">問い合わせる　<i class="fas fa-external-link-alt"></i></a></li>
-  <li class="list-group-item"><a href="/setting/terms/" target="_blank" rel="noopener noreferrer">利用規約　<i class="fas fa-external-link-alt"></i></a></li>
-  <li class="list-group-item"><a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー　<i class="fas fa-external-link-alt"></i></a></li>
-  <li class="list-group-item">
-    <a href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">
-        ログアウト
-    </a>
-  </li>
+<ul class="list-group list-group-flush border-top border-bottom">
+    <li class="list-group-item bg-light"><p class="ml-md-3 mb-0">ヘルプ</p></li>
+    <li class="list-group-item"><a href="/setting/how_to_use/" target="_blank" rel="noopener noreferrer" class="ml-md-3">使い方を見る <i class="fas fa-external-link-alt"></i></a></li>
+    <li class="list-group-item"><a href="/setting/faq/" target="_blank" rel="noopener noreferrer" class="ml-md-3">よくある質問 <i class="fas fa-external-link-alt"></i></a></li>
+    <li class="list-group-item"><a href="/setting/contact/" target="_blank" rel="noopener noreferrer" class="ml-md-3">問い合わせる <i class="fas fa-external-link-alt"></i></a></li>
+    <li class="list-group-item"><a href="/setting/terms/" target="_blank" rel="noopener noreferrer" class="ml-md-3">利用規約 <i class="fas fa-external-link-alt"></i></a></li>
+    <li class="list-group-item"><a href="/setting/privacy_policy/" target="_blank" rel="noopener noreferrer" class="ml-md-3">プライバシーポリシー <i class="fas fa-external-link-alt"></i></a></li>
+    <li class="list-group-item">
+        <a href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"
+            class="ml-md-3">
+            ログアウト
+        </a>
+    </li>
 </ul>
+
 
 <footer class="fixed-bottom bg-white shadow footer-bar">
     <div class="row text-center">
@@ -94,20 +96,6 @@
         </div>
     </div>
 </footer>
-
 @endsection
-
-<script>
-    function copyToClipboard() {
-        var copyTarget = document.getElementById("copyTarget");
-
-        copyTarget.select();
-
-        document.execCommand("Copy");
-
-        alert("リンクをコピーしました : " + copyTarget.value);
-        }
-</script>
-
 
 

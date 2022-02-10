@@ -181,7 +181,7 @@ $displayMenus .='</tbody></table>';
 @section('content')
 <div class="container mb-5 pb-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-9 col-lg-7">
         <?php echo $link;?>
           <table class="table m-0 calendar shadow">
             <thead class="text-center">

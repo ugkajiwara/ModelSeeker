@@ -180,7 +180,7 @@ foreach($calendars as $calendar){
 
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-md-8 mb-5">
+        <div class="col-md-9 col-lg-7 mb-5">
           
           <div class="card shadow-sm bg-white border-0 my-3" style="width: 100%;">
             <div class="card-body py-3">
