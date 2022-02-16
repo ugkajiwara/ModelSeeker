@@ -37,7 +37,7 @@
         <div class="firstview pl-0">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-5 pl-0">
+                    <div class="col-5 pl-0 mt-4 d-flex align-items-end">
                         <img src="{{ asset('img/img2.jpg') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-7 d-flex align-items-center justify-content-center pr-0">

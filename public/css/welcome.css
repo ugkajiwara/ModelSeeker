@@ -86,3 +86,13 @@ i {
 .why_i_made_this {
   background-color: #f8f9fa;
 }
+
+
+@media screen and (max-width: 576px) {
+  .fv-text h5 {
+    font-size: 13px;
+  }
+  .fv-text p{
+    font-size: 11px;
+  }
+}
